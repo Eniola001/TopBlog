@@ -1,0 +1,1 @@
+<h1 {{$attributes->merge(['class' => "text-2xl leading-tight font-semibold group-hover:text-orange-600 duration-200"])}}>{{$slot}}</h1>

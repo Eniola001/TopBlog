@@ -1,0 +1,1 @@
+<img src="{{$post->image}}" {{$attributes->merge(['class'])}} alt="">

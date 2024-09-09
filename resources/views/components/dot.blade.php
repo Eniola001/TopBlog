@@ -1,0 +1,1 @@
+<span class="bg-black rounded-full h-0.5 w-0.5 my-auto inline-block"></span>

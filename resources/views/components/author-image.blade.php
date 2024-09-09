@@ -1,0 +1,1 @@
+<img {{$attributes}} class="rounded-xl h-8">

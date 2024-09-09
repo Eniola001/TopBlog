@@ -1,0 +1,1 @@
+<div class="bg-white px-12 py-8 rounded-lg shadow-lg w-full max-w-md mx-auto my-10 font-raleway">{{$slot}}</div>

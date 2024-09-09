@@ -1,0 +1,1 @@
+<label class="text-sm font-medium font-raleway">{{$slot}}</label>

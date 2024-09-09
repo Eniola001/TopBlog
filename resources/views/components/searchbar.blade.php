@@ -1,0 +1,1 @@
+<input type="text" class="w-full px-8 py-4 rounded-full border border-gray-400 focus:border-transparent focus:outline-none  focus:ring-2 focus:ring-orange-300 bg-white" name="search" placeholder="Search..." required>
