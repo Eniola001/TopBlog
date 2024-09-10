@@ -67,10 +67,7 @@ class PostController extends Controller
             'tags' => ['nullable', 'string', 'max:255']
         ]);
 
-        $path = $request->image->store('post_images');
-        // $imagePath = Storage::url($path);
-        dd($path);
-        // $path = Storage::put('post_images', $request->image);
+        $path = Storage::disk('public')->put('post_images', $request->image);
 
         $post = Post::create([
             'user_id' => Auth::id(),
@@ -80,7 +77,7 @@ class PostController extends Controller
             'category_id' => $request->category_id,
             'date' => date('M d, Y'),
             'read_time' => $request->read_time,
-            'image' => 'https://picsum.photos/300/300',
+            'image' => Storage::url($path),
             'tags' => $request->tags,
         ]);
 
