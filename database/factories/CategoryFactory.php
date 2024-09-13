@@ -17,10 +17,9 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         $categories = ['Lifestyle and Health', 'Arts & Culture', 'Technology', 'Business and Finance', 'Faith & Spirituality', 'Sports and Fitness', 'Education', 'Entertainment', 'Career & Professional Development'];
-        
+
         return [
             'name' => $this->faker->unique()->randomElement($categories),
         ];
     }
 }
-

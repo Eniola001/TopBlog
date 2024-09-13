@@ -2,7 +2,7 @@
 
 <x-blog-card-border class="flex flex-col mx-auto h-175">
   <div>
-    <x-post-image class='w-full h-80' :$post />
+    <x-post-image class='w-full h-80' src="{{$post->image}}" />
   </div>
   <div class="flex flex-col px-10 py-8 h-full">
     <div class="flex items-center space-x-2 py-2">
@@ -26,7 +26,7 @@
         <span>{{$post->views}} views</span>
         <span>{{$post->comments->count()}} comments</span>
       </div>
-      <span>{{rand(1, 300)}} ❤</span>
+      <span>{{rand(1, 5)}} ❤</span>
     </div>
   </div>
 </x-blog-card-border>

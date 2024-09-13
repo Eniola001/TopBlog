@@ -30,6 +30,11 @@
     <div id="success-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
       {{ session('success') }}
     </div>
+    @if (session('deleted'))
+      <div id="success-message" class="bg-red-200 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        {{ session('success') }}
+      </div>
+      @endif
     @endif
     <div class="flex space-x-4 font-crimson text-xl pb-2">
       <a href="/blog">All Posts</a>

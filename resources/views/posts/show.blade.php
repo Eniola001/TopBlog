@@ -24,8 +24,8 @@
     </div>
     <div class="text-5xl font-bold font-crimson my-3">{{$post->title}}</div>
     <div class="text-lg font-medium my-3">{{$post->subtitle}}</div>
-    <div class="my-10 mx-auto w-full"><img src="{{$post->image}}" class="w-full h-96" alt=""></div>
-    <div class="font-light text-justify">
+    <div class="my-10 mx-auto w-full"><img src="{{asset($post->image)}}" class="w-full h-96" alt=""></div>
+    <div class="text-justify">
       {!! $post->body !!}
     </div>
     <div class="mt-12 text-orange-600 flex space-x-2">
@@ -40,10 +40,7 @@
     </div>
     <div class="flex justify-between text-sm text-gray-500 pt-4 border-t border-black">
       <span>{{$post->views}} views</span>
-      <span>{{rand(100, 1000)}} ❤</span>
-      <!-- <div class="flex items-center space-x-px">
-        <span>{{rand(1, 300)}} </span><x-heroicon-s-heart class="h-5 text-red-600"/>
-      </div> -->
+      <span>{{rand(1, 5)}} ❤</span>
     </div>
   </div>
   <div class="border border-gray-300 w-80% mx-auto py-12 px-20 shadow-md">

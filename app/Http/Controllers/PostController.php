@@ -67,7 +67,8 @@ class PostController extends Controller
             'tags' => ['nullable', 'string', 'max:255']
         ]);
 
-        $path = Storage::disk('public')->put('post_images', $request->image);
+        $path = $request->image->store('post_images');
+        $imagePath = Storage::url($path);
 
         $post = Post::create([
             'user_id' => Auth::id(),
@@ -77,7 +78,7 @@ class PostController extends Controller
             'category_id' => $request->category_id,
             'date' => date('M d, Y'),
             'read_time' => $request->read_time,
-            'image' => Storage::url($path),
+            'image' => $imagePath,
             'tags' => $request->tags,
         ]);
 
@@ -141,11 +142,24 @@ class PostController extends Controller
             'title' => ['required'],
             'subtitle' => ['required', 'min:50', 'max:250'],
             'body' => ['required', 'min:100', 'max:5000'],
-            'image' => [File::types(['png', 'jpg', 'webp'])],
+            'image' => ['nullable', File::types(['png', 'jpg', 'webp'])],
             'category_id' => ['required', 'exists:categories,id'],
             'read_time' => ['required'],
             'tags' => ['nullable', 'string', 'max:255']
         ]);
+
+        // Check if a new image is uploaded
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($post->image) {
+                Storage::delete($post->image);
+            }
+            // Store the new image and update the image field
+            $path = $request->image->store('post_images');
+            $imagePath = Storage::url($path);
+
+            $post->update(['image' => $imagePath]);
+        }
 
         $post->update([
             'user_id' => Auth::id(),
@@ -155,17 +169,22 @@ class PostController extends Controller
             'category_id' => $request->category_id,
             'date' => date('M d, Y') . ' (edited)',
             'read_time' => $request->read_time,
-            'image' => 'https://picsum.photos/300/300',
             'tags' => $request->tags,
         ]);
 
-        if ($request->tags) {
-            foreach (explode(',', $request->tags) as $tag) {
-                $post->tag(strtolower($tag));
-            }
-        }
+        $tags = explode(',', $request->tags);
+
+        $tagIds = $this->getTagIds($tags);
+        $post->tags()->sync($tagIds);
 
         return redirect('/posts/' . $post->id);
+    }
+
+    private function getTagIds(array $tags)
+    {
+        return collect($tags)->map(function ($tag) {
+            return Tag::firstOrCreate(['name' => $tag])->id;
+        });
     }
 
     /**
@@ -174,6 +193,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect('/blog');
+        return redirect('/blog')->with('deleted', 'Post deleted successful!');
     }
 }

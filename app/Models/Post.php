@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,6 +43,6 @@ class Post extends Model
 
     public function getPostDateAttribute($value)
     {
-        return \Carbon\Carbon::parse($value)->format('M d, Y');
+        return Carbon::parse($value)->format('M d, Y');
     }
 }
