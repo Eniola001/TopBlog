@@ -1,17 +1,6 @@
 <x-layout>
   <div class="my-10 max-w-4xl mx-auto px-16 py-8 rounded-lg shadow-lg">
     <x-form.form-head>Edit Post</x-form.form-head>
-
-    @if ($errors->any())
-    <div class="bg-red-100 border text-sm border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-      <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-      </ul>
-    </div>
-    @endif
-
     <form action="/posts/{{$post->id}}" method="POST" enctype="multipart/form-data" class="font-raleway">
       @csrf
       @method('PATCH')

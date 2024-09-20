@@ -24,7 +24,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('comments', 'category', 'tags')->get();
-        $recentPosts = Post::latest()->take(3)->get();
+        $recentPosts = Post::latest()->take(5)->get();
 
         return view('index', [
             'posts' => $posts,
@@ -58,11 +58,11 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required'],
-            'subtitle' => ['required', 'min:50', 'max:250'],
+            'title' => ['required', 'min:5', 'max:200'],
+            'subtitle' => ['required', 'min:50', 'max:400'],
             'body' => ['required', 'min:100', 'max:5000'],
             'image' => ['required', File::types(['png', 'jpg', 'webp'])],
-            'category_id' => ['required', 'exists:categories,id'],
+            'category_id' => ['required'],
             'read_time' => ['required'],
             'tags' => ['nullable', 'string', 'max:255']
         ]);
@@ -81,7 +81,7 @@ class PostController extends Controller
             'image' => $imagePath,
             'tags' => $request->tags,
         ]);
-
+        
         if ($request->tags) {
             foreach (explode(',', $request->tags) as $tag) {
                 $post->tag(strtolower($tag));
@@ -139,8 +139,8 @@ class PostController extends Controller
         }
 
         $request->validate([
-            'title' => ['required'],
-            'subtitle' => ['required', 'min:50', 'max:250'],
+            'title' => ['required', 'min:5', 'max:200'],
+            'subtitle' => ['required', 'min:50', 'max:400'],
             'body' => ['required', 'min:100', 'max:5000'],
             'image' => ['nullable', File::types(['png', 'jpg', 'webp'])],
             'category_id' => ['required', 'exists:categories,id'],
@@ -177,7 +177,7 @@ class PostController extends Controller
         $tagIds = $this->getTagIds($tags);
         $post->tags()->sync($tagIds);
 
-        return redirect('/posts/' . $post->id);
+        return redirect('/posts/' . $post->id)->with('success', 'Post Updated Successfully!');
     }
 
     private function getTagIds(array $tags)

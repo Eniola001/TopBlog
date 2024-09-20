@@ -29,7 +29,7 @@ class PostFactory extends Factory
 
             'user_id' => User::factory(),
             'category_id' => fake()->randomElement([1,2,3,4,5,6,7,8,9]),
-            'image' => 'https://static.wixstatic.com/media/f5af78_8a0c0c7ad0524e8c9db0ea850035c1cb~mv2_d_3000_2246_s_2.jpg/v1/fill/w_1110,h_831,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/f5af78_8a0c0c7ad0524e8c9db0ea850035c1cb~mv2_d_3000_2246_s_2.jpg',
+            'image' => 'https://picsum.photos/200/300',
             'title' => fake()->randomElement([
                 'The one thing I would tell to my 16 year old self',
                 'Can’t stop scrolling through your friends’ feed?',

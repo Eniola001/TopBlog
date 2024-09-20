@@ -1,5 +1,10 @@
 <x-layout>
   <div class="text-right w-80% mt-12 mx-auto">
+    @if (session('success'))
+    <div id="success-message" class="bg-green-200 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+      {{ session('success') }}
+    </div>
+    @endif
     @can('edit-post', $post)
     <div class="mt-4">
       <button class="border border-gray-600 hover:bg-gray-200 duration-200 text-gray-600 text-sm font-semibold py-2 px-3 my-4 rounded">
@@ -23,7 +28,7 @@
       </div>
     </div>
     <div class="text-5xl font-bold font-crimson my-3">{{$post->title}}</div>
-    <div class="text-lg font-medium my-3">{{$post->subtitle}}</div>
+    <div class="text-lg tracking-tight my-3">{{$post->subtitle}}</div>
     <div class="my-10 mx-auto w-full"><img src="{{asset($post->image)}}" class="w-full h-96" alt=""></div>
     <div class="text-justify">
       {!! $post->body !!}
@@ -77,4 +82,16 @@
       @endforeach
     </div>
   </div>
+  <script>
+    // Function to hide the success message after 5 seconds
+    setTimeout(function() {
+      var successMessage = document.getElementById('success-message');
+      if (successMessage) {
+        successMessage.classList.add('fade-out');
+        successMessage.addEventListener('transitionend', function() {
+          successMessage.style.display = 'none';
+        });
+      }
+    }, 2000); // 2 seconds
+  </script>
 </x-layout>

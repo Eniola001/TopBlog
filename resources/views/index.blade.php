@@ -12,7 +12,7 @@
           <img src="{{asset('images/top-post.jpg')}}" alt="">
           <div class="py-6 px-10 space-y-3">
             <div class="flex items-center space-x-2 py-2">
-              <x-author-image />
+              <x-author-image src="https://www.shutterstock.com/image-vector/blank-avatar-photo-icon-design-600nw-1682415103.jpg" />
               <div>
                 <x-author>Jarrod Fletcher</x-author>
                 <x-date>Mar 23, 2023
@@ -34,7 +34,7 @@
       <a href="/blog"><x-button class="mt-10">All Posts</x-button></a>
     </div>
   </div>
-
+  @if(!empty($recentPosts))
   <div class="w-80% mx-auto py-16 space-y-12">
     <h1 class="text-4xl font-raleway">Recent Posts</h1>
 
@@ -47,6 +47,7 @@
     </div>
     <a href="/blog"><x-button class="mt-10">More Posts</x-button></a>
   </div>
+  @endif
 
   <div class="border border-black border-r-0 border-l-0 mt-8 p-16">
     <div class="flex items-center justify-between">

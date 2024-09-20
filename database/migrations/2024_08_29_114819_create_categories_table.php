@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,23 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->timestamps();
         });
+
+        // Insert default categories when the table is created
+        $defaultCategories = [
+            'Lifestyle and Health',
+            'Arts & Culture',
+            'Technology',
+            'Business and Finance',
+            'Faith & Spirituality',
+            'Sports and Fitness',
+            'Education',
+            'Entertainment',
+            'Career & Professional Development'
+        ];
+
+        foreach ($defaultCategories as $categoryName) {
+            Category::create(['name' => $categoryName]);
+        }
     }
 
     /**
