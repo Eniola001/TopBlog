@@ -1,6 +1,6 @@
 # TopBlog
 
-**TopBlog** is a modern blogging platform built with **Laravel**, styled using **Blade** templates and **Tailwind CSS**. It offers all the core features needed to manage and share content through a clean and responsive interface.
+**TopBlog** is a modern blogging platform built with **Laravel**, styled using **Blade** templates and **Tailwind CSS**. It offers all the core features needed to manage and share content through a clean interface.
 
 ---
 
@@ -22,10 +22,6 @@
 - **Comments**
   - Readers can comment on posts
   - Authenticated user commenting system
-
-- **Responsive Design**
-  - Fully responsive UI using Tailwind CSS
-  - Styled Blade templates for fast rendering
 
 ---
 
