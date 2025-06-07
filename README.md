@@ -30,7 +30,7 @@
 - **Backend**: Laravel
 - **Frontend**: Blade templating engine
 - **Styling**: Tailwind CSS
-- **Database**: MySQL (or any Laravel-supported DB)
+- **Database**: MySQL
 - **Authentication**: Laravel Breeze
 - **Rich Text Editor**: CKEditor
 - **Image Upload**: Laravel File Storage
